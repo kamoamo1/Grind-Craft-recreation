@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrindCraft</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="Grind.js"></script>
+    <script src="Init.js"></script>
+    <script src="Craft.js"></script>
+    <script src="Maxes.js"></script>
+    <script src="other.js"></script>
+    <script src="Vars.js"></script>
+</head>
+    <div id="loading" style="display: block;">LOADING</div>
+    <body id="body" style="visibility: hidden;">
+    <ErrorInfo style="display:none;">THIS DEVICE IS TOO NARROW TO PLAY!</ErrorInfo>
+<game>
+    <span></span>
+    <grind>
+        <h1>Grind</h1>
+        <ul>
+            <li id="Over" class="grind Over locked" onclick="OverMaterial();"><p class="full">overworld</p><p class="short">earth</p>
+                <img class="tool" id="OverTool" src="">
+                <div class="excavate">
+                    <p id="OverInfo">Wood</p>
+                    <progress></progress>
+                    <img class="material" id="OverMaterial" src="./items/log_wood.png">
+                    <progress class="" id="OverProgress" max="100" value="101"></progress>
+                </div>
+            </li>
+            <li id="Mine" class="grind Mine locked" onclick="MineMaterial();"><p>mine</p>
+                <img class="tool" id="MineTool">
+                <div class="excavate">
+                    <p id="MineInfo">Stone</p>
+                    <progress></progress>
+                    <img class="material" id="MineMaterial" src="./items/stone.png">
+                    <progress class="" id="MineProgress" max="100" value="101"></progress>
+                </div>
+            </li>
+            <li id="Food" class="grind Food locked" onclick="FoodMaterial();"><p>food</p>
+                <img class="tool" id="FoodTool">
+                <div class="excavate">
+                    <p id="FoodInfo">Sugar Cane</p>
+                    <progress></progress>
+                    <img class="material" id="FoodMaterial" src="./items/sugar_cane.png">
+                    <progress class="" id="FoodProgress" max="100" value="101"></progress>
+                </div>
+            </li>
+            <li id="Mobs" class="grind Mobs locked" onclick="MobsMaterial();"><p>mobs</p>
+                <img class="tool" id="MobsTool">
+                <div class="excavate">
+                    <p id="MobsInfo">Zombie</p>
+                    <progress></progress>
+                    <img class="material" id="MobsMaterial" src="./mobs/zombie.png">
+                    <progress class="" id="MobsProgress" max="100" value="101"></progress>
+                </div>
+            </li>
+        </ul>
+    </grind>
+    <craft>
+        <h1>Craft</h1>
+        <ul>
+            <li class="crafter"><!--log-->
+                <img src="./items/log_wood.png">
+                <p id="log">error</p>
+                <div class="popup">
+                    <h1>log</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/wooden_axe.png"><p>any</p></li>
+                        </ul>
+                    </div>
+                    <p>Used for crafting.</p>
+                </div>
+            </li>
+            <li onclick="planks_f();" class="crafter">
+                <img src="./items/oak_planks.png">
+                <p id="planks">error</p>
+                <div class="popup">
+                    <h1>planks</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/log_wood.png"><p>1</p></li>
+                        </ul>
+                    </div>
+                    <p>Used for crafting wooden items.</p>
+                </div>
+            </li>
+            <li onclick="stick_f();" class="crafter">
+                <img src="./items/stick.png">
+                <p id="stick">error</p>
+                <div class="popup">
+                    <h1>stick</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/oak_planks.png"><p>2</p></li>
+                        </ul>
+                    </div>
+                    <p>Used for crafting wooden items, tools.</p>
+                </div>
+            </li>
+            <li onclick="wooden_sword_f();" class="crafter">
+                <img src="./items/wooden_sword.png">
+                <p id="wooden_sword">error</p>
+                <div class="popup">
+                    <h1>wooden sword</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/oak_planks.png"><p>2</p></li>
+                            <li><img src="./items/stick.png"><p>1</p></li>
+                        </ul>
+                    </div>
+                    <p>Used to hunt mobs and farm crops.</p>
+                </div>
+            </li>
+            <li onclick="wooden_pickaxe_f();" class="crafter">
+                <img src="./items/wooden_pickaxe.png" alt="">
+                <p id="wooden_pickaxe">error</p>
+                <div class="popup">
+                    <h1>wooden pickaxe</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/oak_planks.png"><p>3</p></li>
+                            <li><img src="./items/stick.png"><p>2</p></li>
+                        </ul>
+                    </div>
+                    <p>Mines stone and coal.</p>
+                </div>
+            </li>
+            <li onclick="wooden_axe_f();" class="crafter">
+                <img src="./items/wooden_axe.png" alt="">
+                <p id="wooden_axe">error</p>
+                <div class="popup">
+                    <h1>wooden axe</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/oak_planks.png"><p>3</p></li>
+                            <li><img src="./items/stick.png"><p>2</p></li>
+                        </ul>
+                    </div>
+                    <p>Chops wood.</p>
+                </div>
+            </li>
+            <li onclick="wooden_shovel_f();" class="crafter">
+                <img src="./items/wooden_shovel.png" alt="">
+                <p id="wooden_shovel">error</p>
+                <div class="popup">
+                    <h1>wooden shovel</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/oak_planks.png"><p>1</p></li>
+                            <li><img src="./items/stick.png"><p>2</p></li>
+                        </ul>
+                    </div>
+                    <p>Shovels dirt and gravel.</p>
+                </div>
+            </li>
+            <li onclick="wooden_hoe_f();" class="crafter">
+                <img src="./items/wooden_hoe.png" alt="">
+                <p id="wooden_hoe">error</p>
+                <div class="popup">
+                    <h1>wooden hoe</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/oak_planks.png"><p>2</p></li>
+                            <li><img src="./items/stick.png"><p>2</p></li>
+                        </ul>
+                    </div>
+                    <p>Tills soil.</p>
+                </div>
+            </li>
+            <li class="crafter"><!--cobblestone-->
+                <img src="./items/cobblestone.png">
+                <p id="cobblestone">error</p>
+                <div class="popup">
+                    <h1>cobblestone</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/wooden_pickaxe.png"><p>any</p></li>
+                        </ul>
+                    </div>
+                    <p>Used for building and crafting.</p>
+                </div>
+            </li>
+            <li onclick="stone_sword_f();" class="crafter">
+                <img src="./items/stone_sword.png">
+                <p id="stone_sword">error</p>
+                <div class="popup">
+                    <h1>stone sword</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/cobblestone.png"><p>2</p></li>
+                            <li><img src="./items/stick.png"><p>1</p></li>
+                        </ul>
+                    </div>
+                    <p>Used to hunt mobs and farm crops.</p>
+                </div>
+            </li>
+            <li onclick="stone_pickaxe_f();" class="crafter">
+                <img src="./items/stone_pickaxe.png" alt="">
+                <p id="stone_pickaxe">error</p>
+                <div class="popup">
+                    <h1>stone pickaxe</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/cobblestone.png"><p>3</p></li>
+                            <li><img src="./items/stick.png"><p>2</p></li>
+                        </ul>
+                    </div>
+                    <p>Mines iron.</p>
+                </div>
+            </li>
+            <li onclick="stone_axe_f();" class="crafter">
+                <img src="./items/stone_axe.png" alt="">
+                <p id="stone_axe">error</p>
+                <div class="popup">
+                    <h1>stone axe</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/cobblestone.png"><p>3</p></li>
+                            <li><img src="./items/stick.png"><p>2</p></li>
+                        </ul>
+                    </div>
+                    <p>Chops wood.</p>
+                </div>
+            </li>
+            <li onclick="stone_shovel_f();" class="crafter">
+                <img src="./items/stone_shovel.png" alt="">
+                <p id="stone_shovel">error</p>
+                <div class="popup">
+                    <h1>stone shovel</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/cobblestone.png"><p>1</p></li>
+                            <li><img src="./items/stick.png"><p>2</p></li>
+                        </ul>
+                    </div>
+                    <p>Shovels dirt and gravel.</p>
+                </div>
+            </li>
+            <li onclick="stone_hoe_f();" class="crafter">
+                <img src="./items/stone_hoe.png" alt="">
+                <p id="stone_hoe">error</p>
+                <div class="popup">
+                    <h1>stone hoe</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/cobblestone.png"><p>2</p></li>
+                            <li><img src="./items/stick.png"><p>2</p></li>
+                        </ul>
+                    </div>
+                    <p>Tills soil.</p>
+                </div>
+            </li>
+            <li onclick="furnace_f();" class="crafter">
+                <img src="./items/furnace.png">
+                <p id="furnace">error</p>
+                <div class="popup">
+                    <h1>furnace</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/cobblestone.png"><p>8</p></li>
+                        </ul>
+                    </div>
+                    <p>Needed to smelt.</p>
+                </div>
+            </li>
+            <li class="crafter"><!--coal-->
+                <img src="./items/coal.png">
+                <p id="coal">error</p>
+                <div class="popup">
+                    <h1>coal</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/wooden_pickaxe.png"><p>any</p></li>
+                        </ul>
+                    </div>
+                    <p>Used to smelt.</p>
+                </div>
+            </li>
+            <li class="crafter"><!--iron_ore-->
+                <img src="./items/raw_iron.png">
+                <p id="iron_ore">error</p>
+                <div class="popup">
+                    <h1>raw iron</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/stone_pickaxe.png"><p>above</p></li>
+                        </ul>
+                    </div>
+                    <p>Smelt first to get ingots.</p>
+                </div>
+            </li>
+            <li class="crafter"><!--dirt-->
+                <img src="./items/dirt.png">
+                <p id="dirt">error</p>
+                <div class="popup">
+                    <h1>dirt</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/wooden_shovel.png"><p>any</p></li>
+                        </ul>
+                    </div>
+                    <p>Used to make farm.</p>
+                </div>
+            </li>
+            <li class="crafter"><!--seed-->
+                <img src="./items/wheat_seeds.png">
+                <p id="seed">error</p>
+                <div class="popup">
+                    <h1>seed</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/wooden_sword.png"><p>any</p></li>
+                        </ul>
+                    </div>
+                    <p>Used to make farm.</p>
+                </div>
+            </li>
+            <li onclick="bucket_f();" class="crafter">
+                <img src="./items/bucket.png">
+                <p id="bucket">error</p>
+                <div class="popup">
+                    <h1>bucket</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/iron_ingot.png"><p>3</p></li>
+                        </ul>
+                    </div>
+                    <p>Needed to move liquids.</p>
+                </div>
+            </li>
+            <li class="crafter"><!--water-->
+                <img src="./items/water_bucket.png">
+                <p id="water">error</p>
+                <div class="popup">
+                    <h1>water</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/bucket.png"><p></p></li>
+                        </ul>
+                    </div>
+                    <p>Used to make farm.</p>
+                </div>
+            </li>
+            <li class="crafter"><!--lava-->
+                <img src="./items/lava_bucket.png">
+                <p id="lava">error</p>
+                <div class="popup">
+                    <h1>lava</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/bucket.png"><p></p></li>
+                        </ul>
+                    </div>
+                    <p>Used to make lava pool.</p>
+                </div>
+            </li>
+            <li onclick="iron_sword_f();" class="crafter">
+                <img src="./items/iron_sword.png">
+                <p id="iron_sword">error</p>
+                <div class="popup">
+                    <h1>iron sword</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/iron_ingot.png"><p>2</p></li>
+                            <li><img src="./items/stick.png"><p>1</p></li>
+                        </ul>
+                    </div>
+                    <p>Used to hunt mobs and farm crops.</p>
+                </div>
+            </li>
+            <li onclick="iron_pickaxe_f();" class="crafter">
+            <img src="./items/iron_pickaxe.png">
+            <p id="iron_pickaxe">error</p>
+            <div class="popup">
+                <h1>iron pickaxe</h1>
+                <div class="required_items">
+                    <ul>
+                        <li><img src="./items/iron_ingot.png"><p>3</p></li>
+                        <li><img src="./items/stick.png"><p>2</p></li>
+                    </ul>
+                </div>
+                <p>Mines gold.</p>
+            </div>
+            </li>
+            <li onclick="iron_axe_f();" class="crafter">
+            <img src="./items/iron_axe.png">
+            <p id="iron_axe">error</p>
+            <div class="popup">
+                <h1>iron axe</h1>
+                <div class="required_items">
+                    <ul>
+                        <li><img src="./items/iron_ingot.png"><p>3</p></li>
+                        <li><img src="./items/stick.png"><p>2</p></li>
+                    </ul>
+                </div>
+                <p>Chops wood.</p>
+            </div>
+            </li>
+            <li onclick="iron_shovel_f();" class="crafter">
+            <img src="./items/iron_shovel.png">
+            <p id="iron_shovel">error</p>
+            <div class="popup">
+                <h1>iron shovel</h1>
+                <div class="required_items">
+                    <ul>
+                        <li><img src="./items/iron_ingot.png"><p>1</p></li>
+                        <li><img src="./items/stick.png"><p>2</p></li>
+                    </ul>
+                </div>
+                <p>Shovels dirt and gravel.</p>
+            </div>
+            </li>
+            <li onclick="iron_hoe_f();" class="crafter">
+            <img src="./items/iron_hoe.png">
+            <p id="iron_hoe">error</p>
+            <div class="popup">
+                <h1>iron hoe</h1>
+                <div class="required_items">
+                    <ul>
+                        <li><img src="./items/iron_ingot.png"><p>2</p></li>
+                        <li><img src="./items/stick.png"><p>2</p></li>
+                    </ul>
+                </div>
+                <p>Tills soil.</p>
+            </div>
+            </li>
+            <li onclick="iron_ingot_f();" class="crafter">
+                <img src="./items/iron_ingot.png">
+                <p id="iron_ingot">error</p>
+                <div class="popup">
+                    <h1>iron ingot</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/raw_iron.png"><p>1</p></li>
+                            <li><img src="./items/coal.png"><p>1</p></li>
+                            <li><img src="./items/furnace.png"><p>1</p></li>
+                        </ul>
+                    </div>
+                    <p>Usable iron.</p>
+                </div>
+            </li>
+            <!--NOT SORTED-->
+            <li onclick="lead_f();" class="crafter">
+                <img src="./items/lead.png">
+                <p id="lead">error</p>
+                <div class="popup">
+                    <h1>lead</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/string.png"><p>4</p></li>
+                            <li><img src="./items/slime_ball.png"><p>1</p></li>
+                        </ul>
+                    </div>
+                    <p>Needed to catch horses.</p>
+                </div>
+            </li>
+            <li class="crafter"><!--gravel-->
+                <img src="./items/gravel.png">
+                <p id="gravel">error</p>
+                <div class="popup">
+                    <h1>gravel</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/wooden_shovel.png"><p>any</p></li>
+                        </ul>
+                    </div>
+                    <p>Used for crafting arrows.</p>
+                </div>
+            </li>
+            <li onclick="flint_f();" class="crafter">
+                <img src="./items/flint.png">
+                <p id="flint">error</p>
+                <div class="popup">
+                    <h1>flint</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/gravel.png"><p>10</p></li>
+                        </ul>
+                    </div>
+                    <p>Used for crafting arrows.</p>
+                </div>
+            </li>
+            <li class="crafter"><!--diamond-->
+                <img src="./items/diamond.png">
+                <p id="diamond">error</p>
+                <div class="popup">
+                    <h1>diamond</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/golden_pickaxe.png"><p>above</p></li>
+                        </ul>
+                    </div>
+                    <p>Valuable resource, used to make best weapons.</p>
+                </div>
+            </li>
+            <li onclick="diamond_sword_f();" class="crafter">
+                <img src="./items/diamond_sword.png">
+                <p id="diamond_sword">error</p>
+                <div class="popup">
+                    <h1>diamond sword</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/diamond.png"><p>2</p></li>
+                            <li><img src="./items/stick.png"><p>1</p></li>
+                        </ul>
+                    </div>
+                    <p>Used to hunt mobs and farm crops.</p>
+                </div>
+            </li>
+            <li onclick="diamond_pickaxe_f();" class="crafter">
+            <img src="./items/diamond_pickaxe.png">
+            <p id="diamond_pickaxe">error</p>
+            <div class="popup">
+                <h1>diamond pickaxe</h1>
+                <div class="required_items">
+                    <ul>
+                        <li><img src="./items/diamond.png"><p>3</p></li>
+                        <li><img src="./items/stick.png"><p>2</p></li>
+                    </ul>
+                </div>
+                <p>Mines faster.</p>
+            </div>
+            </li>
+            <li onclick="diamond_axe_f();" class="crafter">
+            <img src="./items/diamond_axe.png">
+            <p id="diamond_axe">error</p>
+            <div class="popup">
+                <h1>diamond axe</h1>
+                <div class="required_items">
+                    <ul>
+                        <li><img src="./items/diamond.png"><p>3</p></li>
+                        <li><img src="./items/stick.png"><p>2</p></li>
+                    </ul>
+                </div>
+                <p>Chops wood.</p>
+            </div>
+            </li>
+            <li onclick="diamond_shovel_f();" class="crafter">
+            <img src="./items/diamond_shovel.png">
+            <p id="diamond_shovel">error</p>
+            <div class="popup">
+                <h1>diamond shovel</h1>
+                <div class="required_items">
+                    <ul>
+                        <li><img src="./items/diamond.png"><p>1</p></li>
+                        <li><img src="./items/stick.png"><p>2</p></li>
+                    </ul>
+                </div>
+                <p>Shovels dirt and gravel.</p>
+            </div>
+            </li>
+            <li onclick="diamond_hoe_f();" class="crafter">
+            <img src="./items/diamond_hoe.png">
+            <p id="diamond_hoe">error</p>
+            <div class="popup">
+                <h1>diamond hoe</h1>
+                <div class="required_items">
+                    <ul>
+                        <li><img src="./items/diamond.png"><p>2</p></li>
+                        <li><img src="./items/stick.png"><p>2</p></li>
+                    </ul>
+                </div>
+                <p>Tills soil.</p>
+            </div>
+            </li>
+            <li class="crafter"><!--wheat-->
+                <img src="./items/wheat.png">
+                <p id="wheat">error</p>
+                <div class="popup">
+                    <h1>wheat</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/wooden_sword.png"><p>any</p></li>
+                        </ul>
+                    </div>
+                    <p>Used to make hay bales.</p>
+                </div>
+            </li>
+            <li class="crafter"><!--gold_ore-->
+                <img src="./items/raw_gold.png">
+                <p id="gold_ore">error</p>
+                <div class="popup">
+                    <h1>raw gold</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/iron_pickaxe.png"><p>above</p></li>
+                        </ul>
+                    </div>
+                    <p>Smelt first to get ingots.</p>
+                </div>
+            </li>
+            <li onclick="gold_ingot_f();" class="crafter">
+                <img src="./items/gold_ingot.png">
+                <p id="gold_ingot">error</p>
+                <div class="popup">
+                    <h1>gold ingot</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/raw_gold.png"><p>1</p></li>
+                            <li><img src="./items/coal.png"><p>1</p></li>
+                            <li><img src="./items/furnace.png"><p>1</p></li>
+                        </ul>
+                    </div>
+                    <p>Usable gold.</p>
+                </div>
+            </li>
+            <li onclick="golden_sword_f();" class="crafter">
+            <img src="./items/golden_sword.png">
+            <p id="golden_sword">error</p>
+            <div class="popup">
+                <h1>iron sword</h1>
+                <div class="required_items">
+                    <ul>
+                        <li><img src="./items/gold_ingot.png"><p>2</p></li>
+                        <li><img src="./items/stick.png"><p>1</p></li>
+                    </ul>
+                </div>
+                <p>Used to hunt mobs and farm crops.</p>
+            </div>
+            </li>
+            <li onclick="golden_pickaxe_f();" class="crafter">
+            <img src="./items/golden_pickaxe.png">
+            <p id="golden_pickaxe">error</p>
+            <div class="popup">
+                <h1>iron pickaxe</h1>
+                <div class="required_items">
+                    <ul>
+                        <li><img src="./items/gold_ingot.png"><p>3</p></li>
+                        <li><img src="./items/stick.png"><p>2</p></li>
+                    </ul>
+                </div>
+                <p>Mines diamonds.</p>
+            </div>
+            </li>
+            <li onclick="golden_axe_f();" class="crafter">
+            <img src="./items/golden_axe.png">
+            <p id="golden_axe">error</p>
+            <div class="popup">
+                <h1>iron axe</h1>
+                <div class="required_items">
+                    <ul>
+                        <li><img src="./items/gold_ingot.png"><p>3</p></li>
+                        <li><img src="./items/stick.png"><p>2</p></li>
+                    </ul>
+                </div>
+                <p>Chops wood.</p>
+            </div>
+            </li>
+            <li onclick="golden_shovel_f();" class="crafter">
+            <img src="./items/golden_shovel.png">
+            <p id="golden_shovel">error</p>
+            <div class="popup">
+                <h1>iron shovel</h1>
+                <div class="required_items">
+                    <ul>
+                        <li><img src="./items/gold_ingot.png"><p>1</p></li>
+                        <li><img src="./items/stick.png"><p>2</p></li>
+                    </ul>
+                </div>
+                <p>Shovels dirt and gravel.</p>
+            </div>
+            </li>
+            <li onclick="golden_hoe_f();" class="crafter">
+            <img src="./items/golden_hoe.png">
+            <p id="golden_hoe">error</p>
+            <div class="popup">
+                <h1>iron hoe</h1>
+                <div class="required_items">
+                    <ul>
+                        <li><img src="./items/gold_ingot.png"><p>2</p></li>
+                        <li><img src="./items/stick.png"><p>2</p></li>
+                    </ul>
+                </div>
+                <p>Tills soil.</p>
+            </div>
+            </li>
+            <li class="crafter"><!--sugar_cane-->
+                <img src="./items/sugar_cane.png">
+                <p id="sugar_cane">error</p>
+                <div class="popup">
+                    <h1>sugar cane</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/wooden_sword.png"><p>any</p></li>
+                        </ul>
+                    </div>
+                    <p>Used to make paper and sugar.</p>
+                </div>
+            </li>
+            <li onclick="arrow_f();" class="crafter">
+                <img src="./items/arrow.png">
+                <p id="arrow">error</p>
+                <div class="popup">
+                    <h1>arrow</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/feather.png"><p>1</p></li>
+                            <li><img src="./items/stick.png"><p>1</p></li>
+                            <li><img src="./items/flint.png"><p>1</p></li>
+                        </ul>
+                    </div>
+                    <p>or</p>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/wooden_sword.png"><p>any</p></li>
+                        </ul>
+                    </div>
+                    <p>Bow's projectile.</p>
+                </div>
+            </li>
+            <li class="crafter"><!--spider_string-->
+                <img src="./items/string.png">
+                <p id="spider_string">error</p>
+                <div class="popup">
+                    <h1>string</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/wooden_sword.png"><p>any</p></li>
+                        </ul>
+                    </div>
+                    <p>Used to make bows and wool.</p>
+                </div>
+            </li>
+            <li class="crafter"><!--slime-->
+                <img src="./items/slime_ball.png">
+                <p id="slime">error</p>
+                <div class="popup">
+                    <h1>slime</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/wooden_sword.png"><p>any</p></li>
+                        </ul>
+                    </div>
+                    <p>Used to make lead.</p>
+                </div>
+            </li>
+            <li class="crafter"><!--feather-->
+                <img src="./items/feather.png">
+                <p id="feather">error</p>
+                <div class="popup">
+                    <h1>feather</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/wooden_sword.png"><p>any</p></li>
+                        </ul>
+                    </div>
+                    <p>Used to make arrows.</p>
+                </div>
+            </li>
+            <li class="crafter"><!--leather-->
+                <img src="./items/leather.png">
+                <p id="leather">error</p>
+                <div class="popup">
+                    <h1>leather</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/wooden_sword.png"><p>any</p></li>
+                        </ul>
+                    </div>
+                    <p>Used to make armor and books.</p>
+                </div>
+            </li>
+            <li class="crafter"><!--wool-->
+                <img src="./items/white_wool.png">
+                <p id="wool">error</p>
+                <div class="popup">
+                    <h1>wool</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/wooden_sword.png"><p>any</p></li>
+                        </ul>
+                    </div>
+                    <p>Used to make beds.</p>
+                </div>
+            </li>
+            <li class="crafter"><!--horse-->
+                <img src="./mobs/horse.png">
+                <p id="horse">error</p>
+                <div class="popup">
+                    <h1>horse</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/lead.png"><p></p></li>
+                        </ul>
+                    </div>
+                    <p>Required to make war horses.</p>
+                </div>
+            </li>
+            <li class="crafter"><!--zombie_villager-->
+                <img src="./vilagers/zombie_villager.png">
+                <p id="zombie_villager">error</p>
+                <div class="popup">
+                    <h1>zombie villager</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/placeholder.png"><p></p></li>
+                        </ul>
+                    </div>
+                    <p>Can be healed into villager.</p>
+                </div>
+            </li>
+            <li class="crafter"><!--witch-->
+                <img src="./vilagers/witch.png">
+                <p id="witch">error</p>
+                <div class="popup">
+                    <h1>witch</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/placeholder.png"><p></p></li>
+                        </ul>
+                    </div>
+                    <p>Required to heal villagers.</p>
+                </div>
+            </li>
+            <li onclick="door_f();" class="crafter">
+                <img src="./items/oak_door.png">
+                <p id="door">error</p>
+                <div class="popup">
+                    <h1>door</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/oak_planks.png"><p>6</p></li>
+                        </ul>
+                    </div>
+                    <p>Needed for a house.</p>
+                </div>
+            </li>
+            <li onclick="farm_f();" class="crafter">
+                <img src="./vilagers/farm.png">
+                <p id="farm">error</p>
+                <div class="popup">
+                    <h1>farm</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/dirt.png"><p>32</p></li>
+                            <li><img src="./items/water_bucket.png"><p>2</p></li>
+                            <li><img src="./items/wheat_seeds.png"><p>10</p></li>
+                            <li><img src="./items/log_wood.png"><p>11</p></li>
+                        </ul>
+                    </div>
+                    <p>Required to make villagers</p>
+                </div>
+            </li>
+            <li onclick="hut_f();" class="crafter">
+                <img src="./vilagers/hut.png">
+                <p id="hut">error</p>
+                <div class="popup">
+                    <h1>hut</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/oak_planks.png"><p>32</p></li>
+                            <li><img src="./items/oak_door.png"><p>1</p></li>
+                            <li><img src="./items/log_wood.png"><p>20</p></li>
+                            <li><img src="./items/cobblestone.png"><p>20</p></li>
+                        </ul>
+                    </div>
+                    <p>Required to make villagers</p>
+                </div>
+            </li>
+            <li onclick="small_house_f();" class="crafter">
+                <img src="./vilagers/smallhouse.png">
+                <p id="small_house">error</p>
+                <div class="popup">
+                    <h1>small house</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/oak_planks.png"><p>32</p></li>
+                            <li><img src="./items/oak_door.png"><p>1</p></li>
+                            <li><img src="./items/log_wood.png"><p>20</p></li>
+                            <li><img src="./items/cobblestone.png"><p>20</p></li>
+                        </ul>
+                    </div>
+                    <p>Required to make castle</p>
+                </div>
+            </li>
+            <li onclick="villager_f();" class="crafter">
+                <img src="./vilagers/villager.png">
+                <p id="villager">error</p>
+                <div class="popup">
+                    <h1>villager</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./vilagers/hut.png"><p>1</p></li>
+                            <li><img src="./vilagers/farm.png"><p>1</p></li>
+                        </ul>
+                    </div>
+                    <p>Automates production.</p>
+                </div>
+            </li>
+            <li onclick="villagerOver_f();" class="crafter">
+                <img src="./vilagers/over.png">
+                <p id="villagerOver">error</p>
+                <div class="popup">
+                    <h1>Explorer</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./vilagers/villager.png"><p>1</p></li>
+                            <li><img src="./items/stone_axe.png"><p>1</p></li>
+                            <li><img src="./items/stone_shovel.png"><p>1</p></li>
+                        </ul>
+                    </div>
+                    <p>Explores Overworld and collects it's loots.</p>
+                </div>
+            </li>
+            <li onclick="villagerMine_f();" class="crafter">
+                <img src="./vilagers/mine.png">
+                <p id="villagerMine">error</p>
+                <div class="popup">
+                    <h1>Miner</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./vilagers/villager.png"><p>1</p></li>
+                            <li><img src="./items/stone_pickaxe.png"><p>1</p></li>
+                        </ul>
+                    </div>
+                    <p>Mines in a mine.</p>
+                </div>
+            </li>
+            <li onclick="villagerFood_f();" class="crafter">
+                <img src="./vilagers/food.png">
+                <p id="villagerFood">error</p>
+                <div class="popup">
+                    <h1>Farmer</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./vilagers/villager.png"><p>1</p></li>
+                            <li><img src="./items/stone_hoe.png"><p>1</p></li>
+                            <li><img src="./items/stone_sword.png"><p>1</p></li>
+                        </ul>
+                    </div>
+                    <p>Farms food.</p>
+                </div>
+            </li>
+            <li onclick="villagerMobs_f();" class="crafter">
+                <img src="./vilagers/mobs.png">
+                <p id="villagerMobs">error</p>
+                <div class="popup">
+                    <h1>Hunter</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./vilagers/villager.png"><p>1</p></li>
+                            <li><img src="./items/stone_sword.png"><p>1</p></li>
+                        </ul>
+                    </div>
+                    <p>Hunts animals and creatures.</p>
+                </div>
+            </li>
+
+<!--
+    <<<<<<<<<<SCHEMA>>>>>>>>>>
+            <li onclick="" class="crafter">
+                <img src="./items/">
+                <p id="">error</p>
+                <div class="popup">
+                    <h1>NAME</h1>
+                    <div class="required_items">
+                        <ul>
+                            <li><img src="./items/"><p>1</p></li>
+                        </ul>
+                    </div>
+                    <p>DESCRIPTION</p>
+                </div>
+            </li>
+-->
+        </ul>
+    </craft>
+    <span></span>
+</game>
+<!--DEBUG command: debug();-->
+<div style="display: flex;
+            justify-content: space-between;
+            align-items: center;
+            align-content: center;
+            flex-direction: column;
+            display: none;" id="debug">
+    <button onclick="OverMaterialLevel=30;MineMaterialLevel=59;FoodMaterialLevel=3;MobsMaterialLevel=26;MaxPickaxe=5;MaxAxe=5;MaxSword=5;MaxShovel=5;MaxHoe=5;Bucket=1;">max</button>
+    <div style="display: flex;justify-content: space-between;align-items: center;align-content: center;">  
+    <button onclick="MaxAxe=0;wooden_axe=0;stone_axe=0;iron_axe=0;golden_axe=0;diamond_axe=0;">fist axe</button>
+    <button onclick="GetMaxes();wooden_axe=1;">wooden axe</button>
+    <button onclick="GetMaxes();stone_axe=1;">stone axe</button>
+    <button onclick="GetMaxes();iron_axe=1;">iron axe</button>
+    <button onclick="GetMaxes();golden_axe=1;">gold axe</button>
+    <button onclick="GetMaxes();diamond_axe=1;">diax axe</button>
+    </div>
+    <div style="display: flex;justify-content: space-between;align-items: center;align-content: center;">  
+    <button onclick="MaxShovel=0;wooden_shovel=0;stone_shovel=0;iron_shovel=0;golden_shovel=0;diamond_shovel=0;">fist shovel</button>
+    <button onclick="GetMaxes();wooden_shovel=1;">wooden shovel</button>
+    <button onclick="GetMaxes();stone_shovel=1;">stone shovel</button>
+    <button onclick="GetMaxes();iron_shovel=1;">iron shovel</button>
+    <button onclick="GetMaxes();golden_shovel=1;">gold shovel</button>
+    <button onclick="GetMaxes();diamond_shovel=1;">diax shovel</button>
+    </div>
+    <div style="display: flex;justify-content: space-between;align-items: center;align-content: center;">  
+    <button onclick="MaxSword=0;wooden_sword=0;stone_sword=0;iron_sword=0;golden_sword=0;diamond_sword=0;">fist sword</button>
+    <button onclick="GetMaxes();wooden_sword=1;">wooden sword</button>
+    <button onclick="GetMaxes();stone_sword=1;">stone sword</button>
+    <button onclick="GetMaxes();iron_sword=1;">iron sword</button>
+    <button onclick="GetMaxes();golden_sword=1;">gold sword</button>
+    <button onclick="GetMaxes();diamond_sword=1;">diax sword</button>
+    </div>
+    <div style="display: flex;justify-content: space-between;align-items: center;align-content: center;">  
+    <button onclick="MaxPickaxe=0;wooden_pickaxe=0;stone_pickaxe=0;iron_pickaxe=0;golden_pickaxe=0;diamond_pickaxe=0;">fist pickaxe</button>
+    <button onclick="GetMaxes();wooden_pickaxe=1;">wooden pickaxe</button>
+    <button onclick="GetMaxes();stone_pickaxe=1;">stone pickaxe</button>
+    <button onclick="GetMaxes();iron_pickaxe=1;">iron pickaxe</button>
+    <button onclick="GetMaxes();golden_pickaxe=1;">gold pickaxe</button>
+    <button onclick="GetMaxes();diamond_pickaxe=1;">diax pickaxe</button>
+    </div>
+    <div style="display: flex;justify-content: space-between;align-items: center;align-content: center;">  
+    <button onclick="MaxHoe=0;wooden_hoe=0;stone_hoe=0;iron_hoe=0;golden_hoe=0;diamond_hoe=0;">fist hoe</button>
+    <button onclick="GetMaxes();wooden_hoe=1;">wooden hoe</button>
+    <button onclick="GetMaxes();stone_hoe=1;">stone hoe</button>
+    <button onclick="GetMaxes();iron_hoe=1;">iron hoe</button>
+    <button onclick="GetMaxes();golden_hoe=1;">gold hoe</button>
+    <button onclick="GetMaxes();diamond_hoe=1;">diax hoe</button>
+    </div>
+    <div style="display: flex;justify-content: space-between;align-items: center;align-content: center;">  
+        <button onclick="villagerOver-=1;">villagerOver-1</button>
+        <button onclick="villagerOver+=1;">villagerOver+1</button>
+        <button onclick="OverMaterialLevel-=1;">OverMaterialLevel-1</button>
+        <button onclick="OverMaterialLevel+=1;">OverMaterialLevel+1</button>
+    </div>
+    <div style="display: flex;justify-content: space-between;align-items: center;align-content: center;">  
+        <button onclick="villagerMine-=1;">villagerMine-1</button>
+        <button onclick="villagerMine+=1;">villagerMine+1</button>
+        <button onclick="MineMaterialLevel-=1;">MineMaterialLevel-1</button>
+        <button onclick="MineMaterialLevel+=1;">MineMaterialLevel+1</button>
+    </div>
+    <div style="display: flex;justify-content: space-between;align-items: center;align-content: center;">  
+        <button onclick="villagerFood-=1;">villagerFood-1</button>
+        <button onclick="villagerFood+=1;">villagerFood+1</button>
+        <button onclick="FoodMaterialLevel-=1;">FoodMaterialLevel-1</button>
+        <button onclick="FoodMaterialLevel+=1;">FoodMaterialLevel+1</button>
+    </div>
+    <div style="display: flex;justify-content: space-between;align-items: center;align-content: center;">  
+        <button onclick="villagerMobs-=1;">villagerMobs-1</button>
+        <button onclick="villagerMobs+=1;">villagerMobs+1</button>
+        <button onclick="MobsMaterialLevel-=1;">MobsMaterialLevel-1</button>
+        <button onclick="MobsMaterialLevel+=1;">MobsMaterialLevel+1</button>
+    </div>
+</div>
+</body>
+</html>
